@@ -1,1 +1,1 @@
-##Simple registration
+Simple registration with the ability to view the profile after registration is complete.

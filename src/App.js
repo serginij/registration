@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './bootstrap.css';
 
 import logo from './assets/house.svg';
@@ -35,7 +36,21 @@ class App extends Component {
   }
 
   showProfileHandler = () => {
-    this.setState({ currentStep: 'profile' });
+    let data;
+    axios.get('https://registration-26002.firebaseio.com/profiles.json')
+      .then(response => {
+        let array = Object.keys(response.data).map(i => response.data[i]);
+        console.log(response);
+        data = array.pop();
+        console.log(data);
+        this.setState({
+          data: data,
+          currentStep: 'profile'
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   onClickHandler = () => {
@@ -45,7 +60,26 @@ class App extends Component {
       this.setState({ currentStep: step });
     }
     else {
-      this.setState({ currentStep: 'firstStep' });
+      let data = this.state.data;
+      axios.post('https://registration-26002.firebaseio.com/profiles.json', data)
+      .then(response => {
+        console.log(response.data);
+        this.setState({
+          data: {
+            name: '',
+            surname: '',
+            email: '',
+            country: '',
+            username: '',
+            password: '',
+            imgUrl: ''
+          },
+          currentStep: 'firstStep'
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
     }
   }
 

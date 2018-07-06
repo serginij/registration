@@ -14,15 +14,14 @@ export const profile = (onClick, onChange, props) => (
             <p>{props.surname}</p>
             <h5>Email</h5>
             <p>{props.email}</p>
-            <h5>Country</h5>
+            <h5>Country code</h5>
             <p>{props.country}</p>
             <h5>Username</h5>
             <p>{props.username}</p>
             <h5>Password</h5>
             <p>{props.password}</p>
         </div>
-        {/* <div className='avatar'> */}
-                <img src={props.imgUrl} alt='avatar' className='pict' />
+            <img src={props.imgUrl} alt='avatar' className='pict' />
         </div>
     </Card>
 );
