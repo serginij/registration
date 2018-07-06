@@ -32,7 +32,18 @@ class App extends Component {
   }
 
   showMainHandler = () => {
-    this.setState({ currentStep: 'firstStep' });
+    this.setState({
+      data: {
+        name: '',
+        surname: '',
+        email: '',
+        country: '',
+        username: '',
+        password: '',
+        imgUrl: ''
+      },
+      currentStep: 'firstStep'
+    });
   }
 
   showProfileHandler = () => {
